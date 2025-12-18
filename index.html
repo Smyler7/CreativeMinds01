@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Minds | Digital Excellence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#8b5cf6', // Violet
+                            400: '#a78bfa',
+                        },
+                        dark: {
+                            bg: '#0B0F19',
+                            card: '#151B2B',
+                            border: '#2A3241'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0F19;
+            color: #f8fafc;
+        }
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.3) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #8b5cf6 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradientMove 5s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Logo Animation */
+        .logo-path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: draw 2s ease-out forwards;
+        }
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <div class="relative w-10 h-10 flex items-center justify-center">
+                        <!-- Creative Minds Abstract Logo -->
+                        <svg viewBox="0 0 100 100" class="w-10 h-10 drop-shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                            <defs>
+                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Hexagon/Brain Shape -->
+                            <path d="M50 5 L90 25 L90 75 L50 95 L10 75 L10 25 Z" fill="none" stroke="url(#logoGradient)" stroke-width="6" stroke-linejoin="round" class="logo-path" />
+                            <!-- Inner Circuit Lines -->
+                            <path d="M50 25 L50 50 L75 62" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" class="logo-path" style="animation-delay: 0.5s"/>
+                            <circle cx="75" cy="62" r="4" fill="white" class="animate-pulse"/>
+                            <path d="M25 62 L50 50" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" class="logo-path" style="animation-delay: 0.8s"/>
+                        </svg>
+                        <!-- Glow effect -->
+                        <div class="absolute inset-0 bg-primary-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-xl tracking-tight leading-none text-white">Creative</span>
+                        <span class="font-bold text-sm tracking-widest text-primary-400 uppercase leading-none">Minds</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#services" class="hover:text-primary-400 transition-colors px-3 py-2 rounded-md text-sm font-medium text-gray-300">Expertise</a>
+                        <a href="#process" class="hover:text-primary-400 transition-colors px-3 py-2 rounded-md text-sm font-medium text-gray-300">Method</a>
+                        <a href="#pricing" class="hover:text-primary-400 transition-colors px-3 py-2 rounded-md text-sm font-medium text-gray-300">Plans</a>
+                        <a href="#testimonials" class="hover:text-primary-400 transition-colors px-3 py-2 rounded-md text-sm font-medium text-gray-300">Stories</a>
+                    </div>
+                </div>
+
+                <div class="hidden md:block">
+                    <a href="#contact" class="bg-gradient-to-r from-primary-600 to-accent-500 text-white hover:opacity-90 px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-primary-500/25 transform hover:-translate-y-0.5">
+                        Start Project
+                    </a>
+                </div>
+
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-dark-card border-b border-gray-800" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#services" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Expertise</a>
+                <a href="#process" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Method</a>
+                <a href="#pricing" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Plans</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="text-primary-400 block px-3 py-2 rounded-md text-base font-medium mt-4">Start Project</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="absolute top-0 -left-4 w-96 h-96 bg-accent-500 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob"></div>
+        <div class="absolute top-0 -right-4 w-96 h-96 bg-primary-500 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob animation-delay-4000"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-primary-300 text-xs font-bold mb-8 uppercase tracking-widest backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
+                Reimagining The Web
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-8">
+                Where ideas meet <br>
+                <span class="gradient-text">Infinite Possibilities.</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10 leading-relaxed">
+                <span class="text-white font-semibold">Creative Minds</span> is a premier digital agency blending art and code. We build immersive websites that captivate, convert, and endure.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#pricing" class="px-8 py-4 rounded-full bg-white text-dark-bg font-bold text-lg transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transform hover:-translate-y-1">
+                    View Our Plans
+                </a>
+                <a href="#portfolio" class="px-8 py-4 rounded-full glass-card hover:bg-white/10 text-white font-bold text-lg transition-all border border-white/10 flex items-center gap-2">
+                    <i class="fas fa-play text-xs p-1.5 rounded-full bg-white text-black"></i> Watch Reel
+                </a>
+            </div>
+
+            <!-- Hero Image/Mockup -->
+            <div class="mt-20 relative animate-float">
+                <div class="mx-auto max-w-5xl bg-[#151B2B] rounded-2xl shadow-2xl border border-white/5 overflow-hidden ring-1 ring-white/10">
+                    <div class="h-10 bg-[#0B0F19] border-b border-white/5 flex items-center px-4 space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        <div class="ml-4 w-1/3 h-5 bg-white/5 rounded-md"></div>
+                    </div>
+                    <div class="relative bg-dark-bg aspect-[16/9] flex items-center justify-center overflow-hidden group">
+                         <!-- Creative Abstract UI -->
+                         <div class="absolute inset-0 bg-gradient-to-br from-[#0B0F19] via-[#151B2B] to-[#0B0F19]"></div>
+                         <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#334155 1px, transparent 1px), linear-gradient(90deg, #334155 1px, transparent 1px); background-size: 40px 40px;"></div>
+                         
+                         <!-- Floating Elements -->
+                         <div class="absolute top-1/4 left-1/4 w-20 h-20 bg-primary-500/20 rounded-lg transform rotate-12 backdrop-blur-sm border border-primary-500/30"></div>
+                         <div class="absolute bottom-1/3 right-1/4 w-32 h-24 bg-accent-500/20 rounded-lg transform -rotate-6 backdrop-blur-sm border border-accent-500/30"></div>
+                         
+                         <div class="relative z-10 text-center">
+                             <div class="text-6xl font-black text-white/5 uppercase tracking-tighter">Creative</div>
+                             <div class="text-6xl font-black text-white/5 uppercase tracking-tighter">Minds</div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="border-y border-white/5 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/5">
+                <div class="p-4">
+                    <div class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-2">250+</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Masterpieces</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-2">100%</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Creativity</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-2">3 Days</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Avg. Delivery</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-2">24/7</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Peace of Mind</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm text-accent-400 font-bold tracking-widest uppercase mb-3">Our Expertise</h2>
+                <p class="text-3xl md:text-5xl font-bold text-white">
+                    Crafting Digital <span class="text-primary-400">Experiences</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-card p-8 rounded-3xl hover:border-primary-500/30 transition-all duration-300 group hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-2xl bg-primary-500/10 flex items-center justify-center mb-8 group-hover:bg-primary-500/20 transition-colors">
+                        <i class="fas fa-layer-group text-3xl text-primary-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">UI/UX Design</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        We don't just design screens; we design feelings. Every pixel is placed with purpose to guide your user's journey.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card p-8 rounded-3xl hover:border-accent-500/30 transition-all duration-300 group hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-500/10 flex items-center justify-center mb-8 group-hover:bg-accent-500/20 transition-colors">
+                        <i class="fas fa-code text-3xl text-accent-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Modern Development</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Built on the bleeding edge of technology using React, Tailwind, and Node.js for lightning-fast performance.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card p-8 rounded-3xl hover:border-pink-500/30 transition-all duration-300 group hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-2xl bg-pink-500/10 flex items-center justify-center mb-8 group-hover:bg-pink-500/20 transition-colors">
+                        <i class="fas fa-magic text-3xl text-pink-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Brand Strategy</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        We help you find your voice in a crowded digital world, creating identities that resonate and inspire loyalty.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div id="process" class="py-24 bg-[#080b14] relative overflow-hidden">
+        <!-- Grid Pattern -->
+        <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(0deg, transparent 24%, #ffffff 25%, #ffffff 26%, transparent 27%, transparent 74%, #ffffff 75%, #ffffff 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, #ffffff 25%, #ffffff 26%, transparent 27%, transparent 74%, #ffffff 75%, #ffffff 76%, transparent 77%, transparent); background-size: 50px 50px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="mb-20 md:text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">The Creative Method</h2>
+                <p class="mt-4 text-slate-400">From concept to reality in four simple steps.</p>
+            </div>
+
+            <div class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary-900 to-transparent -translate-y-1/2"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <!-- Step 1 -->
+                    <div class="relative bg-dark-bg p-6 rounded-2xl border border-white/5 z-10">
+                        <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4 shadow-[0_0_15px_rgba(2,132,199,0.5)]">1</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Imagine</h3>
+                        <p class="text-slate-400 text-sm">We brainstorm, sketch, and dream up the perfect solution for your needs.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="relative bg-dark-bg p-6 rounded-2xl border border-white/5 z-10">
+                        <div class="w-12 h-12 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4 shadow-[0_0_15px_rgba(139,92,246,0.5)]">2</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Design</h3>
+                        <p class="text-slate-400 text-sm">We craft visual assets and layouts that align with your brand identity.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="relative bg-dark-bg p-6 rounded-2xl border border-white/5 z-10">
+                        <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4 shadow-[0_0_15px_rgba(219,39,119,0.5)]">3</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Create</h3>
+                        <p class="text-slate-400 text-sm">Our developers write clean, efficient code to bring the design to life.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="relative bg-dark-bg p-6 rounded-2xl border border-white/5 z-10">
+                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4 shadow-[0_0_15px_rgba(22,163,74,0.5)]">4</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Launch</h3>
+                        <p class="text-slate-400 text-sm">We deploy your site to the world, ensuring everything runs smoothly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div id="pricing" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">Transparent Investment</h2>
+                <p class="text-slate-400">Premium quality at competitive rates.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                
+                <!-- Starter -->
+                <div class="glass-card rounded-3xl p-8 border-white/5 hover:border-primary-500/20 transition-all">
+                    <h3 class="text-lg font-medium text-slate-300">Starter Mind</h3>
+                    <div class="my-4">
+                        <span class="text-4xl font-bold text-white">$15</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">Essential presence for individuals.</p>
+                    <ul class="space-y-4 mb-8 text-sm text-slate-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-primary-500"></i> One Page Portfolio</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-primary-500"></i> Mobile Responsive</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-primary-500"></i> Basic SEO</li>
+                    </ul>
+                    <a href="#contact" onclick="selectPlan('Starter')" class="block w-full py-3 px-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-center rounded-xl transition-colors font-medium">Select Plan</a>
+                </div>
+
+                <!-- Professional (Highlighted) -->
+                <div class="bg-gradient-to-b from-primary-900/50 to-dark-card rounded-3xl p-8 border border-primary-500/50 relative transform md:-translate-y-4 shadow-2xl shadow-primary-900/20">
+                    <div class="absolute top-0 right-0 left-0 -mt-3 flex justify-center">
+                        <span class="bg-gradient-to-r from-primary-500 to-accent-500 text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-widest shadow-lg">Most Popular</span>
+                    </div>
+                    <h3 class="text-lg font-medium text-primary-300 mt-2">Creative Pro</h3>
+                    <div class="my-4">
+                        <span class="text-5xl font-bold text-white">$29</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">Complete solution for small businesses.</p>
+                    <ul class="space-y-4 mb-8 text-sm text-slate-200">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-accent-400"></i> Up to 5 Custom Pages</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-accent-400"></i> CMS / Blog Setup</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-accent-400"></i> Speed Optimization</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-accent-400"></i> Social Integration</li>
+                    </ul>
+                    <a href="#contact" onclick="selectPlan('Professional')" class="block w-full py-4 px-4 bg-gradient-to-r from-primary-600 to-accent-600 hover:brightness-110 text-white text-center rounded-xl transition-all font-bold shadow-lg shadow-primary-500/20">Get Started</a>
+                </div>
+
+                <!-- Business -->
+                <div class="glass-card rounded-3xl p-8 border-white/5 hover:border-pink-500/20 transition-all">
+                    <h3 class="text-lg font-medium text-slate-300">Enterprise</h3>
+                    <div class="my-4">
+                        <span class="text-4xl font-bold text-white">$40</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">Full-scale application development.</p>
+                    <ul class="space-y-4 mb-8 text-sm text-slate-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-pink-500"></i> Unlimited Pages</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-pink-500"></i> E-commerce Ready</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-pink-500"></i> Custom Web App</li>
+                    </ul>
+                    <a href="#contact" onclick="selectPlan('Business')" class="block w-full py-3 px-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-center rounded-xl transition-colors font-medium">Contact Sales</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-card rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl backdrop-blur-xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-white mb-4">Ignite Your Project</h2>
+                    <p class="text-slate-400">Tell us about your vision. We'll help you build it.</p>
+                </div>
+
+                <!-- UPDATED FORM: Replace 'YOUR_EMAIL_ADDRESS' below with your actual email -->
+                <form action="https://formsubmit.co/helatinotenda70@gmail.com" method="POST" class="space-y-6">
+                    <!-- Optional: Redirect to the same page after submission or a thank you page -->
+                    <input type="hidden" name="_next" value="https://yourwebsite.com/#contact">
+                    <input type="hidden" name="_subject" value="New Inquiry from Creative Minds Site">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Name</label>
+                            <input type="text" name="name" id="name" required class="w-full bg-dark-bg border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors" placeholder="Jane Doe">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Email</label>
+                            <input type="email" name="email" id="email" required class="w-full bg-dark-bg border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors" placeholder="jane@creativeminds.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="plan" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Interested In</label>
+                        <select name="plan" id="plan" class="w-full bg-dark-bg border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors">
+                            <option value="General">General Inquiry</option>
+                            <option value="Starter">Starter Mind ($15)</option>
+                            <option value="Professional">Creative Pro ($29)</option>
+                            <option value="Business">Enterprise ($40)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Message</label>
+                        <textarea name="message" id="message" rows="4" required class="w-full bg-dark-bg border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors" placeholder="Tell us about your project..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-500 hover:to-accent-500 text-white font-bold py-4 rounded-xl transition-all transform hover:-translate-y-1 shadow-lg shadow-primary-600/25">
+                        Send Message
+                    </button>
+                </form>
+                
+                <!-- Success Message (Handled by FormSubmit, but kept for layout reference) -->
+                    <button onclick="resetForm()" class="mt-8 text-primary-400 hover:text-primary-300 text-sm font-semibold uppercase tracking-wide">Send another</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#05080f] pt-16 pb-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                         <div class="w-8 h-8 flex items-center justify-center">
+                            <svg viewBox="0 0 100 100" class="w-8 h-8">
+                                <path d="M50 5 L90 25 L90 75 L50 95 L10 75 L10 25 Z" fill="none" stroke="#38bdf8" stroke-width="8" />
+                                <path d="M50 25 L50 50 L75 62" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-xl text-white">Creative<span class="text-primary-400">Minds</span></span>
+                    </div>
+                    <p class="text-slate-400 max-w-sm mb-6 leading-relaxed text-sm">
+                        Creative Minds Agency. Where code meets canvas. We build brands that define the future.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary-500 hover:text-white transition-all"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-pink-500 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">Company</h4>
+                    <ul class="space-y-3 text-slate-400 text-sm">
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Our Story</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">The Blog</a></li>
+                        <li><a href="#contact" class="hover:text-primary-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">Legal</h4>
+                    <ul class="space-y-3 text-slate-400 text-sm">
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 text-center text-slate-600 text-sm flex flex-col md:flex-row justify-between items-center">
+                <span>&copy; 2024 Creative Minds Agency. All rights reserved.</span>
+                <span class="mt-2 md:mt-0">Designed with <i class="fas fa-heart text-red-900 mx-1"></i> by Creative Minds.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Navbar blur effect on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg');
+                navbar.style.background = 'rgba(11, 15, 25, 0.95)';
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.style.background = 'rgba(11, 15, 25, 0.8)';
+            }
+        });
+
+        // Pre-select plan in contact form
+        function selectPlan(planName) {
+            const select = document.getElementById('plan');
+            select.value = planName;
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle Contact Form
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contactForm');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Simulate sending
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Sending...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+        // Handle Contact Form (This function is no longer needed with FormSubmit.co, but we keep the other scripts)
+        /* function handleFormSubmit(e) {
+            e.preventDefault();
+            // ... existing javascript ...
+        }
+        */
+
+        function resetForm() {
+            const form = document.getElementById('contactForm');
+            const successMsg = document.getElementById('successMessage');
+            
+            form.reset();
+            form.classList.remove('hidden');
+            successMsg.classList.add('hidden');
+        }
+    </script>
+</body>
